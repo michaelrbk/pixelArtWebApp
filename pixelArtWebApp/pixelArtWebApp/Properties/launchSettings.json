@@ -29,6 +29,13 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "publishAllPorts": true,
       "useSSL": true
+    },
+    "Azure Dev Spaces": {
+      "commandName": "AzureDevSpaces",
+      "launchBrowser": true,
+      "resourceGroup": "MichaelResourceGroup",
+      "aksName": "MichaelKuberneteCluster",
+      "subscriptionId": "510630b3-569e-4146-81a1-073c15d6c406"
     }
   }
 }

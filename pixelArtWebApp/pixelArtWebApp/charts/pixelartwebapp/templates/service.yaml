@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "pixelartwebapp.fullname" . }}
+  labels:
+    app: {{ template "pixelartwebapp.name" . }}
+    chart: {{ template "pixelartwebapp.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "pixelartwebapp.name" . }}
+    release: {{ .Release.Name }}
