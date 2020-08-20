@@ -16,11 +16,14 @@ namespace pixelArtWebApp.Controllers
         public IActionResult SingleFile(IFormFile file)
         {
             var dir = _env.ContentRootPath;
-            using (var fileStream = new FileStream(Path.Combine(dir + "/wwwroot/uploads", string.Format(@"{0}.png", DateTime.Now.Ticks)), FileMode.Create, FileAccess.Write))
+            var fileName = string.Format(@"{0}.png", DateTime.Now.Ticks);
+            var filePath = Path.Combine(dir, "wwwroot", "uploads", fileName);
+            using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
             {
                 file.CopyTo(fileStream);
             }
-            return RedirectToAction("Index");
+            ViewData["FileLocation"] = $"/uploads/{fileName}";
+            return View("../Home/Index");
         }
         public HomeController(IHostEnvironment env, ILogger<HomeController> logger)
         {
